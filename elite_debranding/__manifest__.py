@@ -14,6 +14,7 @@
     'assets': {
         'web.assets_backend': [
             'elite_debranding/static/src/js/debranding.js',
+            'elite_debranding/static/src/js/backend_rtl.js',
             'elite_debranding/static/src/css/debranding.css',
         ],
         'web.assets_frontend': [
