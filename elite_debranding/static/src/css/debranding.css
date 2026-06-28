@@ -1,4 +1,11 @@
-/* Hide Odoo branding promotion bar */
+/* ===== RTL Direction Fix ===== */
+html[dir="rtl"] body,
+html[dir="rtl"] body.o_rtl {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+/* ===== Hide Odoo branding promotion bar ===== */
 .o_brand_promotion,
 .o_brand_promotion_message,
 .o_brand_promotion a {
