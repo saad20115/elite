@@ -5,7 +5,7 @@
     'summary': 'Remove Odoo branding and replace with Elite Tech',
     'description': 'Removes all Odoo branding from backend, frontend, login page, and emails.',
     'author': 'Elite Tech',
-    'website': 'https://elitetech.com',
+    'website': 'https://elitemsr.com',
     'license': 'LGPL-3',
     'depends': ['web', 'mail'],
     'data': [
@@ -18,6 +18,7 @@
         ],
         'web.assets_frontend': [
             'elite_debranding/static/src/css/debranding.css',
+            'elite_debranding/static/src/js/frontend_rtl.js',
         ],
     },
     'auto_install': False,
