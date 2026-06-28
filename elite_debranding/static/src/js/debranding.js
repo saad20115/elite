@@ -1,28 +1,39 @@
 /** @odoo-module **/
-import { registry } from "@web/core/registry";
+import { localization } from "@web/core/l10n/localization";
 
 const BRAND = "Elite Tech";
 
-const customTitleService = {
-    dependencies: [],
-    start() {
-        let parts = {};
-        function _computeTitle() {
-            const elems = Object.values(parts).filter(Boolean);
-            document.title = elems.join(" - ") || BRAND;
-        }
-        return {
-            get current() { return document.title; },
-            getParts() { return Object.assign({}, parts); },
-            setParts(newParts) {
-                if (newParts.zopenerp !== undefined) {
-                    newParts.zopenerp = BRAND;
-                }
-                Object.assign(parts, newParts);
-                _computeTitle();
-            },
-        };
-    },
-};
+// 1. Replace "Odoo" in browser tab title
+function replaceTitle() {
+    if (document.title && document.title.includes("Odoo")) {
+        document.title = document.title.replace(/Odoo/g, BRAND);
+    }
+}
 
-registry.category("services").add("title", customTitleService, { force: true });
+const titleEl = document.querySelector("title");
+if (titleEl) {
+    new MutationObserver(replaceTitle).observe(
+        titleEl, { childList: true, characterData: true, subtree: true }
+    );
+}
+replaceTitle();
+setInterval(replaceTitle, 2000);
+
+// 2. Fix RTL direction for Arabic and other RTL languages
+function applyDirection() {
+    const dir = localization.direction;
+    if (dir) {
+        document.documentElement.setAttribute("dir", dir);
+        document.documentElement.setAttribute("lang", localization.code || "");
+        if (dir === "rtl") {
+            document.body.classList.add("o_rtl");
+        } else {
+            document.body.classList.remove("o_rtl");
+        }
+    }
+}
+
+// Apply direction after localization is loaded
+setTimeout(applyDirection, 500);
+setTimeout(applyDirection, 1500);
+setTimeout(applyDirection, 3000);
