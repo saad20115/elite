@@ -10,6 +10,23 @@ body.o_rtl {
     text-align: right !important;
 }
 
+/* ===== Website Navbar RTL ===== */
+html[dir="rtl"] header .navbar {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] header .navbar-nav {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] header .navbar-brand {
+    order: 1;
+}
+
+html[dir="rtl"] .dropdown-menu {
+    text-align: right;
+}
+
 /* ===== Hide Odoo Branding ===== */
 
 .o_brand_promotion,
