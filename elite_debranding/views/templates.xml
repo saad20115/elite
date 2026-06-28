@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Override web layout title -->
+    <!-- Override web layout: set title + RTL direction on HTML element -->
     <template id="layout_debranding" inherit_id="web.layout">
         <xpath expr="//title" position="replace">
             <title t-esc="title or 'Elite Tech'"/>
+        </xpath>
+        <xpath expr="//html" position="attributes">
+            <attribute name="t-att-dir">request.env['res.lang']._get_data(code=request.env.context.get('lang', 'en_US')).direction if request and hasattr(request, 'env') else 'ltr'</attribute>
         </xpath>
     </template>
 

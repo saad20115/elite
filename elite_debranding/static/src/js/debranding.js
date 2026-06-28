@@ -1,5 +1,4 @@
 /** @odoo-module **/
-import { localization } from "@web/core/l10n/localization";
 
 const BRAND = "Elite Tech";
 
@@ -19,21 +18,31 @@ if (titleEl) {
 replaceTitle();
 setInterval(replaceTitle, 2000);
 
-// 2. Fix RTL direction for Arabic and other RTL languages
-function applyDirection() {
-    const dir = localization.direction;
-    if (dir) {
-        document.documentElement.setAttribute("dir", dir);
-        document.documentElement.setAttribute("lang", localization.code || "");
-        if (dir === "rtl") {
+// 2. Fix RTL: read direction from session info (available before services start)
+function applyRTL() {
+    try {
+        const sessionInfo = odoo.__session_info__;
+        if (sessionInfo && sessionInfo.bundle_params && sessionInfo.bundle_params.lang) {
+            const lang = sessionInfo.bundle_params.lang;
+            const rtlLangs = ["ar", "he", "fa", "ur"];
+            const isRTL = rtlLangs.some(function(l) { return lang.startsWith(l); });
+            if (isRTL) {
+                document.documentElement.setAttribute("dir", "rtl");
+                document.body.classList.add("o_rtl");
+            }
+        }
+    } catch (e) {
+        // Fallback: check HTML dir attribute set by server
+        if (document.documentElement.getAttribute("dir") === "rtl") {
             document.body.classList.add("o_rtl");
-        } else {
-            document.body.classList.remove("o_rtl");
         }
     }
 }
 
-// Apply direction after localization is loaded
-setTimeout(applyDirection, 500);
-setTimeout(applyDirection, 1500);
-setTimeout(applyDirection, 3000);
+// Run after DOM is ready and after body loads
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyRTL);
+} else {
+    applyRTL();
+}
+setTimeout(applyRTL, 1000);
