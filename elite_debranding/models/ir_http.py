@@ -11,13 +11,8 @@ class IrHttp(models.AbstractModel):
         result['server_version_info'] = (19, 0, 0, 'final', 0, 'elite')
         return result
 
-    @classmethod
-    def _get_web_editor_context(cls):
-        result = super()._get_web_editor_context() if hasattr(super(), '_get_web_editor_context') else {}
-        return result
 
-
-class IrQweb(models.Model):
+class IrQweb(models.AbstractModel):
     _inherit = 'ir.qweb'
 
     def _prepare_frontend_rendering_context(self, additionnal_values=None):
