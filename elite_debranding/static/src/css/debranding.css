@@ -1,8 +1,27 @@
-/* ===== RTL Direction Fix ===== */
+/* ===== RTL Direction Fix (Website + Backend) ===== */
 html[dir="rtl"] body,
-html[dir="rtl"] body.o_rtl {
+body.o_rtl {
     direction: rtl !important;
     text-align: right !important;
+}
+
+html[dir="rtl"],
+html:has(body.o_rtl) {
+    direction: rtl;
+}
+
+/* Fix navbar and main layout for RTL */
+body.o_rtl .o_main_navbar {
+    direction: rtl !important;
+}
+
+body.o_rtl .o_action_manager {
+    direction: rtl !important;
+}
+
+body.o_rtl .o_cp_searchview,
+body.o_rtl .breadcrumb {
+    direction: rtl !important;
 }
 
 /* ===== Hide Odoo branding promotion bar ===== */
