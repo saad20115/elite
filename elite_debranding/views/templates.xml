@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Override web layout title -->
+    <template id="layout_debranding" inherit_id="web.layout">
+        <xpath expr="//title" position="replace">
+            <title t-esc="title or 'Elite Tech'"/>
+        </xpath>
+    </template>
+
+</odoo>

@@ -1,0 +1,30 @@
+/* Hide Odoo branding promotion bar */
+.o_brand_promotion,
+.o_brand_promotion_message,
+.o_brand_promotion a {
+    display: none !important;
+}
+
+/* Hide Powered by Odoo in website footer */
+a[href*="odoo.com"]:not(.btn),
+span:has(> a[href*="odoo.com"]) {
+    display: none !important;
+}
+
+/* Hide Odoo logo in login page */
+.o_login_odoo_logo,
+.oe_login_footer a[href*="odoo.com"] {
+    display: none !important;
+}
+
+/* Hide Odoo in database manager */
+.o_database_manager a[href*="odoo.com"],
+.o_database_manager .text-muted:has(a[href*="odoo.com"]) {
+    display: none !important;
+}
+
+/* Hide Odoo small print */
+footer .o_powered_by,
+.o_footer_copyright a[href*="odoo.com"] {
+    display: none !important;
+}
