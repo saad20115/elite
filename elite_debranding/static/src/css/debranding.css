@@ -1,3 +1,7 @@
+/* =============================================
+   Elite Tech - RTL & Debranding CSS
+   ============================================= */
+
 /* ===== RTL Direction Fix (Website + Backend) ===== */
 html[dir="rtl"] body,
 body.o_rtl {
@@ -10,7 +14,97 @@ html:has(body.o_rtl) {
     direction: rtl;
 }
 
-/* Fix navbar and main layout for RTL */
+/* ===== Website Frontend RTL ===== */
+
+/* Navbar */
+html[dir="rtl"] header#top .navbar {
+    direction: rtl !important;
+}
+
+html[dir="rtl"] header#top .navbar-nav {
+    flex-direction: row-reverse !important;
+}
+
+html[dir="rtl"] header#top .navbar-brand {
+    margin-left: 1rem;
+    margin-right: 0 !important;
+}
+
+html[dir="rtl"] header#top .navbar-nav .nav-item {
+    text-align: right !important;
+}
+
+html[dir="rtl"] .o_header_right,
+html[dir="rtl"] header .navbar > :last-child {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+html[dir="rtl"] header .navbar > :first-child {
+    margin-right: 0 !important;
+    margin-left: auto !important;
+}
+
+/* Dropdown menus */
+html[dir="rtl"] .dropdown-menu {
+    text-align: right !important;
+    right: 0 !important;
+    left: auto !important;
+}
+
+/* Main content */
+html[dir="rtl"] #wrapwrap {
+    direction: rtl !important;
+}
+
+html[dir="rtl"] main,
+html[dir="rtl"] .container,
+html[dir="rtl"] .container-fluid {
+    direction: rtl !important;
+}
+
+/* Lists and items */
+html[dir="rtl"] ul, html[dir="rtl"] ol {
+    padding-right: 2rem;
+    padding-left: 0;
+}
+
+/* Footer */
+html[dir="rtl"] footer {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+/* Buttons */
+html[dir="rtl"] .btn .fa,
+html[dir="rtl"] .btn .oi {
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
+/* Forms */
+html[dir="rtl"] .form-control,
+html[dir="rtl"] .form-select,
+html[dir="rtl"] input,
+html[dir="rtl"] textarea {
+    text-align: right !important;
+}
+
+html[dir="rtl"] label {
+    text-align: right !important;
+}
+
+/* Cards and sections */
+html[dir="rtl"] .card-body {
+    text-align: right;
+}
+
+html[dir="rtl"] .row {
+    direction: rtl;
+}
+
+/* ===== Backend RTL ===== */
+
 body.o_rtl .o_main_navbar {
     direction: rtl !important;
 }
@@ -24,32 +118,44 @@ body.o_rtl .breadcrumb {
     direction: rtl !important;
 }
 
-/* ===== Hide Odoo branding promotion bar ===== */
+body.o_rtl .o_settings_container {
+    direction: rtl !important;
+}
+
+body.o_rtl .o_base_settings .o_base_settings_sidebar {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+body.o_rtl .o_form_view,
+body.o_rtl .o_list_view,
+body.o_rtl .o_kanban_view {
+    direction: rtl !important;
+}
+
+/* ===== Hide Odoo Branding ===== */
+
 .o_brand_promotion,
 .o_brand_promotion_message,
 .o_brand_promotion a {
     display: none !important;
 }
 
-/* Hide Powered by Odoo in website footer */
 a[href*="odoo.com"]:not(.btn),
 span:has(> a[href*="odoo.com"]) {
     display: none !important;
 }
 
-/* Hide Odoo logo in login page */
 .o_login_odoo_logo,
 .oe_login_footer a[href*="odoo.com"] {
     display: none !important;
 }
 
-/* Hide Odoo in database manager */
 .o_database_manager a[href*="odoo.com"],
 .o_database_manager .text-muted:has(a[href*="odoo.com"]) {
     display: none !important;
 }
 
-/* Hide Odoo small print */
 footer .o_powered_by,
 .o_footer_copyright a[href*="odoo.com"] {
     display: none !important;
